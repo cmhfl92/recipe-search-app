@@ -10,12 +10,20 @@ export default function Homepage() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
+  console.log('App ID:', process.env.NEXT_PUBLIC_EDAMAM_APP_ID);
+  console.log('App Key:', process.env.NEXT_PUBLIC_EDAMAM_APP_KEY);
+
   const handleSearch = async () => {
     if (!query) return;
     setLoading(true);
     setError('');
     try {
       const data = await searchRecipes(query);
+      if (!data?.hits) {
+        setError('No recipes found.');
+        setRecipes([]);
+        return;
+      }
       console.log('data', data);
       setRecipes(data.hits.map((hit: any) => hit.recipe));
     } catch (err) {
