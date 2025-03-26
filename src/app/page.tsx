@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { searchRecipes } from '@/app/lib/api';
 import Image from 'next/image';
+import QuickBadge from './components/quickBadge';
 
 export default function Homepage() {
   const [query, setQuery] = useState<string>('');
@@ -81,7 +82,11 @@ export default function Homepage() {
                   ))}
                 </div>
               )}
-              <p className='text-sm mb-2'>⏱️ {recipe.totalTime || 'N/A'} min</p>
+              <p className='text-sm mb-2'>
+                ⏱️ {recipe.totalTime || 'N/A'} min{' '}
+                <QuickBadge time={recipe.totalTime} />
+              </p>
+
               <a
                 href={recipe.url}
                 target='_blank'
