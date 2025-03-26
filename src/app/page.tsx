@@ -73,7 +73,7 @@ export default function Homepage() {
                   ? removeFavorite(recipe.uri)
                   : addFavorite(recipe.uri)
               }
-              className='absolute top-2 right-2 text-2xl transition-transform duration-150 ease-in-out hover:scale-110 hover:text-red-500'
+              className='absolute top-2 right-2 text-2xl transition-transform duration-150 ease-in-out hover:scale-110 active:scale-70 hover:text-red-500'
               title={
                 isFavorite(recipe.uri)
                   ? 'Remove from favorites'
