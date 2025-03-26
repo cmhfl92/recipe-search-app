@@ -67,16 +67,18 @@ export default function Homepage() {
               height={300}
               className='rounded mb-4 object-cover'
             />
-            <h2 className='font-semibold text-lg mb-2'>{recipe.label}</h2>
-            <p className='text-sm mb-2'>⏱️ {recipe.totalTime || 'N/A'} min</p>
-            <a
-              href={recipe.url}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-blue-600 hover:underline text-sm'
-            >
-              View Full Recipe →
-            </a>
+            <div className='bg-white text-black rounded shadow p-4'>
+              <h2 className='font-semibold text-lg mb-2'>{recipe.label}</h2>
+              <p className='text-sm mb-2'>⏱️ {recipe.totalTime || 'N/A'} min</p>
+              <a
+                href={recipe.url}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-blue-600 hover:underline text-sm'
+              >
+                View Full Recipe →
+              </a>
+            </div>
           </div>
         ))}
       </div>
