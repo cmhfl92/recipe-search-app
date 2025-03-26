@@ -69,6 +69,18 @@ export default function Homepage() {
             />
             <div className='bg-white text-black rounded shadow p-4'>
               <h2 className='font-semibold text-lg mb-2'>{recipe.label}</h2>
+              {recipe.healthLabels?.length > 0 && (
+                <div className='flex flex-wrap gap-1 mb-2'>
+                  {recipe.healthLabels?.map((label: string) => (
+                    <span
+                      key={label}
+                      className='bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded'
+                    >
+                      {label}
+                    </span>
+                  ))}
+                </div>
+              )}
               <p className='text-sm mb-2'>⏱️ {recipe.totalTime || 'N/A'} min</p>
               <a
                 href={recipe.url}

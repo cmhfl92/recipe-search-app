@@ -5,6 +5,7 @@ export interface Recipe {
   url: string;
   totalTime: number;
   ingredientLines: string[];
+  healthLabels?: string[];
 }
 
 export interface RecipeSearchResponse {

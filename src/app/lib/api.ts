@@ -31,6 +31,7 @@ export const mockRecipes = {
         url: 'https://example.com/recipes/spaghetti-carbonara',
         totalTime: 25,
         ingredientLines: ['Spaghetti', 'Eggs', 'Parmesan', 'Pancetta'],
+        healthLabels: ['Gluten-Free'],
       },
     },
     {
@@ -41,6 +42,7 @@ export const mockRecipes = {
         url: 'https://example.com/recipes/avocado-toast',
         totalTime: 10,
         ingredientLines: ['Bread', 'Avocado', 'Salt', 'Chili flakes'],
+        healthLabels: ['Vegan'],
       },
     },
   ],
