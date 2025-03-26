@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuickBadge Snapshot renders nothing for time > 15 minutes 1`] = `<DocumentFragment />`;
+
+exports[`QuickBadge Snapshot renders wuick badge corerctly for <= 15 minutes 1`] = `
+<DocumentFragment>
+  <span
+    class="text-green-600"
+    title="Quick Recipe"
+  >
+    🚀
+  </span>
+</DocumentFragment>
+`;
