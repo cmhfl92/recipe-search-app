@@ -5,9 +5,17 @@ import { searchRecipes } from '@/app/lib/api';
 import Image from 'next/image';
 import QuickBadge from './components/quickBadge';
 import { useFavorites } from './lib/favoriteContext';
+import { useRouter } from 'next/navigation';
 
 export default function Homepage() {
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+
+  //routing to favorites page
+  const router = useRouter();
+
+  const goToFavorites = () => {
+    router.push('/favorites');
+  };
 
   const [query, setQuery] = useState<string>('');
   const [recipes, setRecipes] = useState<any[]>([]);
@@ -55,6 +63,12 @@ export default function Homepage() {
           className='bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700'
         >
           Search
+        </button>
+        <button
+          onClick={goToFavorites}
+          className='text-sm text-blue-600 hover:underline hover:text-blue-800 cursor-pointer float-right'
+        >
+          💖 View Favorites
         </button>
       </div>
 
