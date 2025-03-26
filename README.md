@@ -1,6 +1,6 @@
-# 🥗 Recipe Search App
+# Recipe Search App
 
-A modern recipe search app built with **Next.js**, **TypeScript**, and the **Edamam Recipe API**. Search for recipes, view nutrition info, and save your favorites 💖
+A modern recipe search app built with **Next.js**, **TypeScript**, and the **Edamam Recipe API**. Search for recipes, view nutrition info, and save your favorites.
 
 ![screenshot](public/screenshot.png)
 
@@ -25,7 +25,7 @@ A modern recipe search app built with **Next.js**, **TypeScript**, and the **Eda
 
 ---
 
-## 🛠️ Getting Started
+## Getting Started
 
 ### 1. Clone the repo
 
