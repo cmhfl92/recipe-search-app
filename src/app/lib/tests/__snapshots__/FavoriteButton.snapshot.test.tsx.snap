@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FavoriteButton Snapshot renders favorited state after click 1`] = `
+<DocumentFragment>
+  <button>
+    ❤️
+  </button>
+</DocumentFragment>
+`;
+
+exports[`FavoriteButton Snapshot renders non-favorited state 1`] = `
+<DocumentFragment>
+  <button>
+    ❤️
+  </button>
+</DocumentFragment>
+`;

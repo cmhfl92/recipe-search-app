@@ -2,7 +2,7 @@
 
 exports[`QuickBadge Snapshot renders nothing for time > 15 minutes 1`] = `<DocumentFragment />`;
 
-exports[`QuickBadge Snapshot renders wuick badge corerctly for <= 15 minutes 1`] = `
+exports[`QuickBadge Snapshot renders quick badge correctly for <= 15 minutes 1`] = `
 <DocumentFragment>
   <span
     class="text-green-600"

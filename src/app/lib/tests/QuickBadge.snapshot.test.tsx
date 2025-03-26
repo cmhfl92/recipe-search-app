@@ -2,7 +2,7 @@ import QuickBadge from '@/app/components/quickBadge';
 import { render } from '@testing-library/react';
 
 describe('QuickBadge Snapshot', () => {
-  it('renders wuick badge corerctly for <= 15 minutes', () => {
+  it('renders quick badge correctly for <= 15 minutes', () => {
     const { asFragment } = render(<QuickBadge time={10} />);
     expect(asFragment()).toMatchSnapshot();
   });
