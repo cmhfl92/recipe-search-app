@@ -6,6 +6,7 @@ import Image from 'next/image';
 import QuickBadge from './components/quickBadge';
 import { useFavorites } from './lib/favoriteContext';
 import { useRouter } from 'next/navigation';
+import ThemeToggle from './components/themeToggle';
 
 export default function Homepage() {
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
@@ -47,7 +48,7 @@ export default function Homepage() {
   };
 
   return (
-    <main className='max-w-5xl mx-auto p-4'>
+    <main className='bg-white text-black dark:bg-gray-900 dark:text-white min-h-screen'>
       <h1 className='text-3xl font-bold mb-6 text-center'>🍽️ Recipe Finder</h1>
 
       <div className='flex gap-2 mb-6 justify-center'>
@@ -70,6 +71,7 @@ export default function Homepage() {
         >
           💖 View Favorites
         </button>
+        <ThemeToggle />
       </div>
 
       {loading && <p className='text-center text-gray-600'>Loading...</p>}
