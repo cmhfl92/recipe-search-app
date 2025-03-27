@@ -7,9 +7,11 @@ import QuickBadge from './components/quickBadge';
 import { useFavorites } from './lib/favoriteContext';
 import { useRouter } from 'next/navigation';
 import ThemeToggle from './components/themeToggle';
+import { useTheme } from './lib/themeContext';
 
 export default function Homepage() {
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+  const { theme } = useTheme();
 
   //routing to favorites page
   const router = useRouter();
@@ -37,7 +39,6 @@ export default function Homepage() {
         setRecipes([]);
         return;
       }
-      console.log('data', data);
       setRecipes(data.hits.map((hit: any) => hit.recipe));
     } catch (err) {
       console.error(err);
@@ -48,7 +49,11 @@ export default function Homepage() {
   };
 
   return (
-    <main className='bg-white text-black dark:bg-gray-900 dark:text-white min-h-screen'>
+    <main
+      className={`min-h-screen ${
+        theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'
+      }`}
+    >
       <h1 className='text-3xl font-bold mb-6 text-center'>🍽️ Recipe Finder</h1>
 
       <div className='flex gap-2 mb-6 justify-center'>
@@ -81,7 +86,7 @@ export default function Homepage() {
         {recipes.map(recipe => (
           <div
             key={recipe.uri}
-            className='relative border rounded shadow bg-white'
+            className='relative border border-slate-200 rounded shadow bg-white dark:bg-gray-800'
           >
             <button
               onClick={() =>
@@ -106,7 +111,7 @@ export default function Homepage() {
                 height={300}
                 className='rounded mb-4 object-cover'
               />
-              <div className='bg-white text-black rounded shadow p-4'>
+              <div className='bg-white text-black dark:bg-gray-800 dark:text-white rounded shadow p-4'>
                 <h2 className='font-semibold text-lg mb-2'>{recipe.label}</h2>
                 {recipe.healthLabels?.length > 0 && (
                   <div className='flex flex-wrap gap-1 mb-2'>
