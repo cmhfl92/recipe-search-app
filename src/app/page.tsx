@@ -11,6 +11,7 @@ import { useTheme } from './lib/themeContext';
 import RecipeDifficultyBadge, {
   RecipeDifficulty,
 } from './components/recipeDifficultyBadge';
+import SpiceBadge from './components/spiceBadge';
 
 export default function Homepage() {
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
@@ -134,6 +135,9 @@ export default function Homepage() {
                 </p>
                 <p className='text-sm mb-2'>
                   <RecipeDifficultyBadge difficulty={recipe.difficulty} />
+                </p>
+                <p className='text-sm mb-2'>
+                  <SpiceBadge spiceLevel={recipe.spice} />
                 </p>
 
                 <a

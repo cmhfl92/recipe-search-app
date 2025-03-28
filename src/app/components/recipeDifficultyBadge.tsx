@@ -11,9 +11,9 @@ const RecipeDifficultyMap: Record<RecipeDifficulty, string> = {
 };
 
 const RecipeDifficultyColor: Record<RecipeDifficulty, string> = {
-  [RecipeDifficulty.Easy]: 'green',
-  [RecipeDifficulty.Medium]: 'orange',
-  [RecipeDifficulty.Hard]: 'red',
+  [RecipeDifficulty.Easy]: 'oklch(0.627 0.194 149.214)',
+  [RecipeDifficulty.Medium]: 'oklch(0.705 0.213 47.604)',
+  [RecipeDifficulty.Hard]: 'oklch(0.637 0.237 25.331)',
 };
 
 export default function RecipeDifficultyBadge({
@@ -23,7 +23,7 @@ export default function RecipeDifficultyBadge({
 }) {
   return (
     <>
-      <span style={{ backgroundColor: RecipeDifficultyColor[difficulty] }}>
+      <span style={{ color: RecipeDifficultyColor[difficulty] }}>
         {RecipeDifficultyMap[difficulty]}
       </span>
     </>
