@@ -8,6 +8,9 @@ import { useFavorites } from './lib/favoriteContext';
 import { useRouter } from 'next/navigation';
 import ThemeToggle from './components/themeToggle';
 import { useTheme } from './lib/themeContext';
+import RecipeDifficultyBadge, {
+  RecipeDifficulty,
+} from './components/recipeDifficultyBadge';
 
 export default function Homepage() {
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
@@ -128,6 +131,9 @@ export default function Homepage() {
                 <p className='text-sm mb-2'>
                   ⏱️ {recipe.totalTime || 'N/A'} min{' '}
                   <QuickBadge time={recipe.totalTime} />
+                </p>
+                <p className='text-sm mb-2'>
+                  <RecipeDifficultyBadge difficulty={recipe.difficulty} />
                 </p>
 
                 <a

@@ -1,3 +1,5 @@
+import { RecipeDifficulty } from '../components/recipeDifficultyBadge';
+
 export interface Recipe {
   uri: string;
   label: string;
@@ -6,6 +8,7 @@ export interface Recipe {
   totalTime: number;
   ingredientLines: string[];
   healthLabels?: string[];
+  difficulty: RecipeDifficulty;
 }
 
 export interface RecipeSearchResponse {
