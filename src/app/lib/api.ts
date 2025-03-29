@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { RecipeSearchResponse } from '@/app/types/recipe';
 import { RecipeDifficulty } from '../components/recipeDifficultyBadge';
-import { SpiceLevelBadge } from '../components/spiceBadge';
+import { SpiceLevel } from '../components/spiceBadge';
 
 const APP_ID = process.env.NEXT_PUBLIC_EDAMAM_APP_ID!;
 const APP_KEY = process.env.NEXT_PUBLIC_EDAMAM_APP_KEY!;
@@ -41,7 +41,7 @@ export const mockRecipes = {
         ingredientLines: ['Spaghetti', 'Eggs', 'Parmesan', 'Pancetta'],
         healthLabels: ['Gluten-Free'],
         difficulty: RecipeDifficulty.Medium,
-        spice: SpiceLevelBadge.Mild,
+        spice: SpiceLevel.Mild,
       },
     },
     {
@@ -54,7 +54,7 @@ export const mockRecipes = {
         ingredientLines: ['Bread', 'Avocado', 'Salt', 'Chili flakes'],
         healthLabels: ['Vegan'],
         difficulty: RecipeDifficulty.Easy,
-        spice: SpiceLevelBadge.NoSpice,
+        spice: SpiceLevel.NoSpice,
       },
     },
     {
@@ -74,7 +74,7 @@ export const mockRecipes = {
         ],
         healthLabels: ['Vegan'],
         difficulty: RecipeDifficulty.Hard,
-        spice: SpiceLevelBadge.Hot,
+        spice: SpiceLevel.Hot,
       },
     },
     {
@@ -87,7 +87,7 @@ export const mockRecipes = {
         ingredientLines: ['chickens thighs', 'spices'],
         healthLabels: ['Gluten Free'],
         difficulty: RecipeDifficulty.Easy,
-        spice: SpiceLevelBadge.Medium,
+        spice: SpiceLevel.Medium,
       },
     },
   ],

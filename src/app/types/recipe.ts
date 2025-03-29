@@ -1,5 +1,5 @@
 import { RecipeDifficulty } from '../components/recipeDifficultyBadge';
-import { SpiceLevelBadge } from '../components/spiceBadge';
+import { SpiceLevel } from '../components/spiceBadge';
 
 export interface Recipe {
   uri: string;
@@ -10,7 +10,7 @@ export interface Recipe {
   ingredientLines: string[];
   healthLabels?: string[];
   difficulty: RecipeDifficulty;
-  spice: SpiceLevelBadge;
+  spice: SpiceLevel;
 }
 
 export interface RecipeSearchResponse {
