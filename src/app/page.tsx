@@ -8,10 +8,9 @@ import { useFavorites } from './lib/favoriteContext';
 import { useRouter } from 'next/navigation';
 import ThemeToggle from './components/themeToggle';
 import { useTheme } from './lib/themeContext';
-import RecipeDifficultyBadge, {
-  RecipeDifficulty,
-} from './components/recipeDifficultyBadge';
-import SpiceBadge from './components/spiceBadge';
+import { RecipeBadge } from './components/recipeDifficultyBadge';
+import { SpiceLevelBadge } from './components/spiceBadge';
+import { GenericBadge } from './components/genericBadge';
 
 export default function Homepage() {
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
@@ -134,10 +133,12 @@ export default function Homepage() {
                   <QuickBadge time={recipe.totalTime} />
                 </p>
                 <p className='text-sm mb-2'>
-                  <RecipeDifficultyBadge difficulty={recipe.difficulty} />
+                  {/* <RecipeDifficultyBadge difficulty={recipe.difficulty} /> */}
+                  <GenericBadge type={recipe.difficulty} map={RecipeBadge} />
                 </p>
                 <p className='text-sm mb-2'>
-                  <SpiceBadge spiceLevel={recipe.spice} />
+                  {/* <SpiceBadge spiceLevel={recipe.spice} /> */}
+                  <GenericBadge type={recipe.spice} map={SpiceLevelBadge} />
                 </p>
 
                 <a

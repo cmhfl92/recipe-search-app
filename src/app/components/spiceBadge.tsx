@@ -22,7 +22,7 @@ export enum SpiceLevel {
 // };
 
 //combining my spiceLevel records into one
-const SpiceLevelBadge = CreateBadgeMap<SpiceLevel>({
+export const SpiceLevelBadge = CreateBadgeMap<SpiceLevel>({
   [SpiceLevel.NoSpice]: {
     label: 'Not Spicy ❄️',
     color: 'oklch(0.685 0.169 237.323)',
@@ -41,11 +41,12 @@ const SpiceLevelBadge = CreateBadgeMap<SpiceLevel>({
   },
 });
 
-export default function SpiceBadge({ spiceLevel }: { spiceLevel: SpiceLevel }) {
-  const { label, color } = SpiceLevelBadge[spiceLevel];
-  return (
-    <>
-      <span style={{ color }}>{label}</span>
-    </>
-  );
-}
+//refactored into GenericBadge component
+// export default function SpiceBadge({ spiceLevel }: { spiceLevel: SpiceLevel }) {
+//   const { label, color } = SpiceLevelBadge[spiceLevel];
+//   return (
+//     <>
+//       <span style={{ color }}>{label}</span>
+//     </>
+//   );
+// }

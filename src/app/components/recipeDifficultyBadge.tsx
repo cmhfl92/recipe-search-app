@@ -19,7 +19,7 @@ export enum RecipeDifficulty {
 // };
 
 //refactored/combined badge component record types for recipes
-const RecipeBadge = CreateBadgeMap<RecipeDifficulty>({
+export const RecipeBadge = CreateBadgeMap<RecipeDifficulty>({
   [RecipeDifficulty.Easy]: {
     label: 'Easy Peasy 🍋',
     color: 'oklch(0.627 0.194 149.214)',
@@ -34,15 +34,16 @@ const RecipeBadge = CreateBadgeMap<RecipeDifficulty>({
   },
 });
 
-export default function RecipeDifficultyBadge({
-  difficulty,
-}: {
-  difficulty: RecipeDifficulty;
-}) {
-  const { label, color } = RecipeBadge[difficulty];
-  return (
-    <>
-      <span style={{ color }}>{label}</span>
-    </>
-  );
-}
+//refactored into GenericBadge component
+// export default function RecipeDifficultyBadge({
+//   difficulty,
+// }: {
+//   difficulty: RecipeDifficulty;
+// }) {
+//   const { label, color } = RecipeBadge[difficulty];
+//   return (
+//     <>
+//       <span style={{ color }}>{label}</span>
+//     </>
+//   );
+// }
