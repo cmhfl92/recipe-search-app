@@ -11,6 +11,7 @@ import { useTheme } from './lib/themeContext';
 import { RecipeBadge } from './components/recipeDifficultyBadge';
 import { SpiceLevelBadge } from './components/spiceBadge';
 import { GenericBadge } from './components/genericBadge';
+import PlayGround from '@/app/playground/page';
 
 export default function Homepage() {
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
@@ -21,6 +22,10 @@ export default function Homepage() {
 
   const goToFavorites = () => {
     router.push('/favorites');
+  };
+
+  const goToPlayground = () => {
+    router.push('/playground');
   };
 
   const [query, setQuery] = useState<string>('');
@@ -79,7 +84,13 @@ export default function Homepage() {
         >
           💖 View Favorites
         </button>
-        <ThemeToggle />
+
+        <button
+          onClick={goToPlayground}
+          className='text-sm text-blue-600 hover:underline hover:text-blue-800 cursor-pointer float-right'
+        >
+          Let's Play!
+        </button>
       </div>
 
       {loading && <p className='text-center text-gray-600'>Loading...</p>}

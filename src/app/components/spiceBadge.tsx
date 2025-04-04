@@ -21,7 +21,7 @@ export enum SpiceLevel {
 //   [SpiceLevel.Hot]: 'oklch(0.637 0.237 25.331)',
 // };
 
-//combining my spiceLevel records into one
+//combining my spiceLevel record types into one
 export const SpiceLevelBadge = CreateBadgeMap<SpiceLevel>({
   [SpiceLevel.NoSpice]: {
     label: 'Not Spicy ❄️',
