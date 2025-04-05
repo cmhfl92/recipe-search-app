@@ -1,91 +1,121 @@
 'use client';
 import { useState } from 'react';
 
-type Book = {
+type Task = {
   id: number;
-  title: string;
-  author: string;
-  read: boolean;
+  text: string;
+  completed: boolean;
 };
 
-//Fix the mutation bug in handleAddBook - check
-//Fix the shallow mutation in toggleReadStatus - check
-//Replace index as key with something more stable - check
-//(Bonus) Improve id generation to avoid duplicate IDs in real-world usage - check
+//Fix a mutation bug (it’s subtle) - fixed?
+//Fix the sort logic (hint: it works but causes odd side effects) - fixed
+//Implement a working filter toggle (currently broken) - fixed
+//Avoid unnecessary re-renders - this is regarding showCompleted toggle...it is showing two arrays when clicked and when I click "toggle"..not sure
+// Fix the key prop issue - fixed
+//Bonus: add a reset button to bring all tasks back into view - not sure
 
 export default function PlayGround() {
-  const [books, setBooks] = useState<Book[]>([
-    { id: 1, title: '1984', author: 'Orwell', read: false },
-    { id: 2, title: 'Dune', author: 'Herbert', read: false },
+  const [tasks, setTasks] = useState<Task[]>([
+    { id: 1, text: 'Buy milk', completed: false },
+    { id: 2, text: 'Walk dog', completed: true },
+    { id: 3, text: 'Read book', completed: false },
   ]);
 
-  const [newTitle, setNewTitle] = useState('');
-  const [newAuthor, setNewAuthor] = useState('');
+  const [newTask, setNewTask] = useState('');
+  const [showCompletedOnly, setShowCompletedOnly] = useState(false);
 
-  // ❌ Bug: Books are not added properly - fixed
-  function handleAddBook() {
-    const newBook = {
+  const handleAddTask = () => {
+    const task = {
       id: Date.now(),
-      title: newTitle,
-      author: newAuthor,
-      read: false,
+      text: newTask,
+      completed: false,
     };
-    setBooks([...books, newBook]);
-    setNewTitle('');
-    setNewAuthor('');
-  }
+    setTasks([...tasks, task]); //this was the mutation bug?
+    setNewTask('');
+  };
 
-  // ❌ Bug: Toggling read status is broken - fixed
-  function toggleReadStatus(bookId: number) {
-    const readStatus = books.map(book =>
-      book.id === bookId
-        ? {
-            ...book,
-            read: !book.read,
-          }
-        : book
+  const toggleComplete = (taskId: number) => {
+    const completedTasks = tasks.map(
+      task =>
+        task.id === taskId ? { ...task, completed: !task.completed } : task //fixed toggle
     );
-    setBooks(readStatus);
-  }
+    console.log('completedTasks', completedTasks);
+    setTasks(completedTasks);
+  };
+
+  const sortTasks = () => {
+    const sorted = tasks.toSorted((a, b) => a.text.localeCompare(b.text));
+    setTasks(sorted);
+  };
+
+  const visibleTasks = showCompletedOnly
+    ? tasks.filter(task => task.completed)
+    : tasks;
+
+  const toggleFilter = () => {
+    setShowCompletedOnly(!showCompletedOnly);
+  };
+
+  const resetTasks = () => {
+    setShowCompletedOnly(false); //tried "prev", "[...tasks]"
+  };
+
+  console.log('visibleTasks', visibleTasks);
 
   return (
     <div className='p-6'>
-      <h2 className='text-2xl font-bold mb-4'>📚 Book Tracker</h2>
+      <h2 className='text-xl font-bold mb-4'>🧹 Task Manager</h2>
 
       <input
         className='border p-2 mr-2'
-        placeholder='Book title'
-        value={newTitle}
-        onChange={e => setNewTitle(e.target.value)}
-      />
-      <input
-        className='border p-2 mr-2'
-        placeholder='Author'
-        value={newAuthor}
-        onChange={e => setNewAuthor(e.target.value)}
+        value={newTask}
+        onChange={e => setNewTask(e.target.value)}
+        placeholder='Add a task...'
       />
       <button
-        className='bg-green-600 text-white px-4 py-2 rounded'
-        onClick={handleAddBook}
+        className='bg-green-500 text-white px-4 py-2 rounded'
+        onClick={handleAddTask}
       >
-        Add Book
+        Add
+      </button>
+      <button
+        className='ml-2 bg-blue-500 text-white px-4 py-2 rounded'
+        onClick={sortTasks}
+      >
+        Sort A-Z
+      </button>
+      <button
+        className='ml-2 bg-purple-500 text-white px-4 py-2 rounded'
+        onClick={toggleFilter}
+      >
+        {showCompletedOnly ? 'Show All' : 'Show Completed'}
       </button>
 
-      <ul className='mt-6'>
-        {books.map(book => (
-          <li key={book.id} className='mb-2'>
-            <span className='mr-4'>
-              <strong>{book.title}</strong> by {book.author}
+      <ul className='mt-4'>
+        {visibleTasks.map((task, index) => (
+          <li key={task.id} className='mb-2'>
+            <span
+              style={{
+                textDecoration: task.completed ? 'line-through' : 'none',
+              }}
+            >
+              {task.text}
             </span>
             <button
-              onClick={() => toggleReadStatus(book.id)}
-              className='text-blue-600 underline'
+              className='ml-4 text-sm text-blue-600 underline'
+              onClick={() => toggleComplete(task.id)}
             >
-              Mark as {book.read ? 'Unread' : 'Read'}
+              Toggle
             </button>
           </li>
         ))}
       </ul>
+      <button
+        className='ml-2 bg-blue-500 text-white px-4 py-2 rounded'
+        onClick={resetTasks}
+      >
+        Reset{' '}
+      </button>
     </div>
   );
 }
