@@ -1,25 +1,38 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-export const fetchRecipes = createAsyncThunk(
-  'recipes/fetchRecipes',
-  async () => {
-    const res = await fetch('https://api.example.com/recipes'); //is there a "get" call?
-    const data = await res.json();
-    return data;
-  }
-);
+export type Recipe = {
+  id: number;
+  title: string;
+};
 
-interface RecipeState {
-  recipes: any[];
+interface RecipesState {
+  recipes: Recipe[];
   loading: boolean;
   error: string | null;
 }
 
-const initialState: RecipeState = {
+const initialState: RecipesState = {
   recipes: [],
   loading: false,
   error: null,
 };
+
+export const fetchRecipes = createAsyncThunk(
+  'recipes/fetchRecipes',
+  async () => {
+    const res = await new Promise<{ id: number; title: string }[]>(resolve =>
+      setTimeout(
+        () =>
+          resolve([
+            { id: 1, title: 'Sphagetti' },
+            { id: 2, title: 'Tacos' },
+          ]),
+        1000
+      )
+    );
+    return res;
+  }
+);
 
 const recipesSlice = createSlice({
   name: 'recipes',
@@ -37,7 +50,7 @@ const recipesSlice = createSlice({
       })
       .addCase(fetchRecipes.rejected, (state, action) => {
         (state.loading = false),
-          (state.error = action.error.message ?? 'Something Went Wrong!');
+          (state.error = action.error.message ?? 'Failed to load recipes!!');
       });
   },
 });
