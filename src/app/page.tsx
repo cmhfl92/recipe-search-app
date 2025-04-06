@@ -15,14 +15,30 @@ import PlayGround from '@/app/playground/page';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from './store';
 import { fetchRecipes } from '@/app/components/recipeSlice';
+import {
+  useGetReipcesQuery,
+  useLazyGetReipcesQuery,
+} from './components/appSlice';
 
 export default function Homepage() {
-  const dispatch = useDispatch<AppDispatch>();
-  const {
-    data: recipes,
-    loading,
-    error,
-  } = useSelector((state: RootState) => state.recipes);
+  // const dispatch = useDispatch<AppDispatch>();
+  // const {
+  //   data: recipes,
+  //   loading,
+  //   error,
+  // } = useSelector((state: RootState) => state.recipes);
+  const [query, setQuery] = useState<string>('');
+
+  // const {
+  //   data: recipes = [],
+  //   error,
+  //   isLoading,
+  // } = useGetReipcesQuery(query, {
+  //   skip: !query, //search the recipe first then display list of recipes
+  // });
+
+  const [trigger, { data: recipes = [], isLoading, error }] =
+    useLazyGetReipcesQuery();
 
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
   const { theme } = useTheme();
@@ -38,11 +54,9 @@ export default function Homepage() {
     router.push('/playground');
   };
 
-  const [query, setQuery] = useState<string>('');
-
   const handleSearch = async () => {
     if (!query) return;
-    dispatch(fetchRecipes(query));
+    trigger(query);
   };
 
   return (
@@ -82,8 +96,12 @@ export default function Homepage() {
         </button>
       </div>
 
-      {loading && <p className='text-center text-gray-600'>Loading...</p>}
-      {error && <p className='text-center text-red-500'>{error}</p>}
+      {isLoading && <p className='text-center text-gray-600'>Loading...</p>}
+      {error ? (
+        <p className='text-center text-red-500'>
+          {(error as any)?.message || 'Something went wrong.'}
+        </p>
+      ) : null}
 
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
         {recipes.map(recipe => (
