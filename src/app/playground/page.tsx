@@ -1,55 +1,31 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function DelayedScoreTracker() {
-  const [score, setScore] = useState(0);
-  const [log, setLog] = useState<string[]>([]);
+//Shows a number starting at 10 - check
+//✅ When the user clicks "Start Countdown", it counts down to 0 every second
+//✅ When it reaches 0, stop the interval and show "⏰ Time’s up!"
 
-  // function handleAddScore() {
-  //   setTimeout(() => {
-  //     setScore(prevScore => {
-  //       const newScore = prevScore + 1;
-  //       setLog(prevLog => [
-  //         ...prevLog,
-  //         `Scored after delay! Total: ${newScore}`,
-  //       ]);
-  //       return newScore;
-  //     });
-  //   }, 1000);
-  // }
+//BONUS:
+//Add a "Reset" button to bring it back to 10
+//Disable the "Start Countdown" button once it’s running
 
-  function handleAddScore() {
-    setTimeout(() => {
-      console.log('Timer fired!');
+export default function NoReturnBug() {
+  const [count, setCount] = useState<number>(10);
 
-      setScore(prevScore => {
-        const newScore = prevScore + 1;
-        setLog(prevLog => [
-          ...prevLog,
-          `Scored after delay! Total: ${newScore}`,
-        ]);
-
-        return newScore;
-      });
-    }, 1000);
+  function handleIncrement() {
+    setCount(prev => prev + 1);
   }
 
   return (
     <div className='p-6'>
-      <h2 className='text-xl font-bold mb-4'>🏁 Delayed Score Tracker</h2>
-      <p>Score: {score}</p>
+      <h2 className='text-xl font-bold mb-4'>🧮 Basic Counter</h2>
+      <p className='text-2xl mb-2'>Count: {count}</p>
       <button
-        onClick={handleAddScore}
-        className='bg-green-600 text-white px-4 py-2 rounded'
+        onClick={handleIncrement}
+        className='bg-blue-600 text-white px-4 py-2 rounded'
       >
-        Add Score (After 1s)
+        Increment
       </button>
-
-      <ul className='mt-4'>
-        {log.map((entry, index) => (
-          <li key={index}>{entry}</li>
-        ))}
-      </ul>
     </div>
   );
 }

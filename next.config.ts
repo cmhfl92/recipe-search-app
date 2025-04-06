@@ -5,8 +5,8 @@ const nextConfig: NextConfig = {
     domains: ['source.unsplash.com'],
   },
 };
-// module.exports = {
-//   reactStrictMode: false,
-// };
+module.exports = {
+  reactStrictMode: false,
+};
 
 export default nextConfig;
