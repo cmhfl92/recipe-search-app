@@ -1,36 +1,24 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { searchRecipes } from '../lib/api';
+import { Recipe } from '../types/recipe';
 
-export type Recipe = {
-  id: number;
-  title: string;
+type RecipesState = {
+  data: Recipe[];
+  loading: boolean;
+  error: string;
 };
 
-interface RecipesState {
-  recipes: Recipe[];
-  loading: boolean;
-  error: string | null;
-}
-
 const initialState: RecipesState = {
-  recipes: [],
+  data: [],
   loading: false,
-  error: null,
+  error: '',
 };
 
 export const fetchRecipes = createAsyncThunk(
   'recipes/fetchRecipes',
-  async () => {
-    const res = await new Promise<{ id: number; title: string }[]>(resolve =>
-      setTimeout(
-        () =>
-          resolve([
-            { id: 1, title: 'Sphagetti' },
-            { id: 2, title: 'Tacos' },
-          ]),
-        1000
-      )
-    );
-    return res;
+  async (query: string) => {
+    const response = await searchRecipes(query);
+    return response.hits.map((hit: any) => hit.recipe);
   }
 );
 
@@ -42,11 +30,11 @@ const recipesSlice = createSlice({
     builder
       .addCase(fetchRecipes.pending, state => {
         state.loading = true;
-        state.error = null;
+        state.error = '';
       })
       .addCase(fetchRecipes.fulfilled, (state, action) => {
+        state.data = action.payload;
         state.loading = false;
-        state.recipes = action.payload;
       })
       .addCase(fetchRecipes.rejected, (state, action) => {
         (state.loading = false),

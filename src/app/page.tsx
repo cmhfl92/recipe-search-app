@@ -12,8 +12,18 @@ import { RecipeBadge } from './components/recipeDifficultyBadge';
 import { SpiceLevelBadge } from './components/spiceBadge';
 import { GenericBadge } from './components/genericBadge';
 import PlayGround from '@/app/playground/page';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from './store';
+import { fetchRecipes } from '@/app/components/recipeSlice';
 
 export default function Homepage() {
+  const dispatch = useDispatch<AppDispatch>();
+  const {
+    data: recipes,
+    loading,
+    error,
+  } = useSelector((state: RootState) => state.recipes);
+
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
   const { theme } = useTheme();
 
@@ -29,31 +39,10 @@ export default function Homepage() {
   };
 
   const [query, setQuery] = useState<string>('');
-  const [recipes, setRecipes] = useState<any[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
-
-  console.log('App ID:', process.env.NEXT_PUBLIC_EDAMAM_APP_ID);
-  console.log('App Key:', process.env.NEXT_PUBLIC_EDAMAM_APP_KEY);
 
   const handleSearch = async () => {
     if (!query) return;
-    setLoading(true);
-    setError('');
-    try {
-      const data = await searchRecipes(query);
-      if (!data?.hits) {
-        setError('No recipes found.');
-        setRecipes([]);
-        return;
-      }
-      setRecipes(data.hits.map((hit: any) => hit.recipe));
-    } catch (err) {
-      console.error(err);
-      setError('Failed to fetch recipes. Try again!');
-    } finally {
-      setLoading(false);
-    }
+    dispatch(fetchRecipes(query));
   };
 
   return (
@@ -118,16 +107,16 @@ export default function Homepage() {
               {isFavorite(recipe.uri) ? '❤️' : '💔'}
             </button>
             <div className='p-4'>
-              <Image
+              {/* <Image
                 src={recipe.image}
                 alt={recipe.label}
                 width={400}
                 height={300}
                 className='rounded mb-4 object-cover'
-              />
+              /> */}
               <div className='bg-white text-black dark:bg-gray-800 dark:text-white rounded shadow p-4'>
                 <h2 className='font-semibold text-lg mb-2'>{recipe.label}</h2>
-                {recipe.healthLabels?.length > 0 && (
+                {recipe.healthLabels?.length! > 0 && (
                   <div className='flex flex-wrap gap-1 mb-2'>
                     {recipe.healthLabels?.map((label: string) => (
                       <span

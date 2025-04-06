@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { FavoritesProvider } from './lib/favoriteContext';
 import { ThemeProvider, useTheme } from './lib/themeContext';
+import { Provider } from 'react-redux';
+import { store } from '@/app/store';
+import { AppProviders } from './appProviders';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -29,9 +32,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider>
-          <FavoritesProvider>{children}</FavoritesProvider>{' '}
-        </ThemeProvider>
+        <AppProviders>{children}</AppProviders>
       </body>
     </html>
   );
