@@ -25,11 +25,32 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Recipe API!');
 });
 
-app.get('/recipes', (req, res) => {
-  res.json([
-    { id: 1, label: 'Mock Spaghetti' },
-    { id: 2, label: 'Mock Tacos' },
-  ]);
+app.get('/recipes', async (req, res) => {
+  try {
+    const recipes = await Recipe.find();
+    res.json(recipes);
+  } catch (err) {
+    console.error('Error fetching recipes:', err);
+    res.status(500).json({ error: 'Failed to fetch recipes' });
+  }
+});
+
+app.post('/recipes', async (req, res) => {
+  try {
+    const { label } = req.body;
+
+    if (!label) {
+      return res.status(400).json({ error: 'Label is required!' });
+    }
+
+    const newRecipe = new Recipe({ label });
+    const savedRecipe = await newRecipe.save();
+
+    res.status(201).json(savedRecipe);
+  } catch (err) {
+    console.error('Error saving recipe:', err);
+    res.status(500).json({ error: 'Something went wrong' });
+  }
 });
 
 app.listen(PORT, () => {
