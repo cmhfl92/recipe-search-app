@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { use, useState } from 'react';
 import { searchRecipes } from '@/app/lib/api';
 import Image from 'next/image';
 import QuickBadge from './components/quickBadge';
@@ -16,27 +16,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from './store';
 import { fetchRecipes } from '@/app/components/recipeSlice';
 import {
+  useDeleteRecipeMutation,
   useGetReipcesQuery,
   useLazyGetReipcesQuery,
 } from './components/appSlice';
 
 export default function Homepage() {
-  // const dispatch = useDispatch<AppDispatch>();
-  // const {
-  //   data: recipes,
-  //   loading,
-  //   error,
-  // } = useSelector((state: RootState) => state.recipes);
   const [query, setQuery] = useState<string>('');
 
-  // const {
-  //   data: recipes = [],
-  //   error,
-  //   isLoading,
-  // } = useGetReipcesQuery(query, {
-  //   skip: !query, //search the recipe first then display list of recipes
-  // });
-
+  const [deleteRecipe] = useDeleteRecipeMutation();
   const [trigger, { data: recipes = [], isLoading, error }] =
     useLazyGetReipcesQuery();
 
@@ -56,6 +44,11 @@ export default function Homepage() {
 
   const handleSearch = async () => {
     if (!query) return;
+    trigger(query);
+  };
+
+  const handleDeleteRecipe = async (id: string) => {
+    await deleteRecipe(id);
     trigger(query);
   };
 
@@ -123,6 +116,15 @@ export default function Homepage() {
               }
             >
               {isFavorite(recipe._id) ? '❤️' : '💔'}
+            </button>
+            <button
+              onClick={() => {
+                handleDeleteRecipe(recipe._id);
+              }}
+              className='absolute top-2 right-8 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'
+              title='Delete'
+            >
+              Delete
             </button>
             <div className='p-4'>
               {/* <Image
