@@ -41,6 +41,22 @@ app.get('/recipes', async (_req: Request, res: Response): Promise<void> => {
   }
 });
 
+app.get('/search', async (req: Request, res: Response): Promise<void> => {
+  const query = req.query.query?.toString().toLocaleLowerCase();
+
+  try {
+    const allRecipes = await Recipe.find();
+
+    const filtered = query
+      ? allRecipes.filter(recipe => recipe.label.toLowerCase().includes(query))
+      : allRecipes;
+
+    res.json({ hits: filtered.map(recipe => ({ recipe })) });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to search recipes' });
+  }
+});
+
 app.post('/recipes', async (req: Request, res: Response): Promise<void> => {
   try {
     const { label } = req.body;
