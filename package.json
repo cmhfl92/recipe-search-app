@@ -41,5 +41,18 @@
     "ts-jest": "^29.3.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
-  }
+  },
+  "description": "A modern recipe search app built with **Next.js**, **TypeScript**, and the **Edamam Recipe API**. Search for recipes, view nutrition info, and save your favorites.",
+  "main": "jest.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmhfl92/recipe-search-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cmhfl92/recipe-search-app/issues"
+  },
+  "homepage": "https://github.com/cmhfl92/recipe-search-app#readme"
 }
