@@ -22,7 +22,7 @@ A modern recipe search app built with **Next.js**, **TypeScript**, and the **Eda
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **RTK Query:** [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
 - **Redux ToolKit:** [Redux ToolKit](https://redux-toolkit.js.org/)
-- **Testing:** [Jest](https://jestjs.io/) + [Testing Library](https://testing-library.com/)
+- **Testing:** [Jest](https://jestjs.io/) + [Testing Library](https://testing-library.com/) -**Express:** [Express](https://expressjs.com/) -**NodeJS:** [Node.js](https://nodejs.org/en)
 
 ---
 
