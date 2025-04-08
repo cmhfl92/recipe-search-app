@@ -11,14 +11,14 @@ export const recipesApi = createApi({
       transformResponse: (response: RecipeSearchResponse) =>
         response.hits.map(hit => hit.recipe),
       providesTags: result =>
-        result ? result.map(({ uri }) => ({ type: 'Recipe', id: uri })) : [],
+        result ? result.map(({ _id }) => ({ type: 'Recipe', id: _id })) : [],
     }),
     deleteRecipe: builder.mutation<{ success: boolean; id: string }, string>({
       query: id => ({
         url: `/recipes/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: (result, error, id) => [{ type: 'Recipe', id }],
+      invalidatesTags: ['Recipe'],
     }),
   }),
 });
