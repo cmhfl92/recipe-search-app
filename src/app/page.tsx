@@ -106,23 +106,23 @@ export default function Homepage() {
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
         {recipes.map(recipe => (
           <div
-            key={recipe.uri}
+            key={recipe._id || recipe.uri}
             className='relative border border-slate-200 rounded shadow bg-white dark:bg-gray-800'
           >
             <button
               onClick={() =>
-                isFavorite(recipe.uri)
-                  ? removeFavorite(recipe.uri)
-                  : addFavorite(recipe.uri)
+                isFavorite(recipe._id)
+                  ? removeFavorite(recipe._id)
+                  : addFavorite(recipe._id)
               }
               className='absolute top-2 right-2 text-2xl transition-transform duration-150 ease-in-out hover:scale-110 active:scale-70 hover:text-red-500'
               title={
-                isFavorite(recipe.uri)
+                isFavorite(recipe._id)
                   ? 'Remove from favorites'
                   : 'Add to favorites'
               }
             >
-              {isFavorite(recipe.uri) ? '❤️' : '💔'}
+              {isFavorite(recipe._id) ? '❤️' : '💔'}
             </button>
             <div className='p-4'>
               {/* <Image
@@ -148,15 +148,15 @@ export default function Homepage() {
                 )}
                 <p className='text-sm mb-2'>
                   ⏱️ {recipe.totalTime || 'N/A'} min{' '}
-                  <QuickBadge time={recipe.totalTime} />
+                  <QuickBadge time={recipe.totalTime!} />
                 </p>
                 <p className='text-sm mb-2'>
                   {/* <RecipeDifficultyBadge difficulty={recipe.difficulty} /> */}
-                  <GenericBadge type={recipe.difficulty} map={RecipeBadge} />
+                  <GenericBadge type={recipe.difficulty!} map={RecipeBadge} />
                 </p>
                 <p className='text-sm mb-2'>
                   {/* <SpiceBadge spiceLevel={recipe.spice} /> */}
-                  <GenericBadge type={recipe.spice} map={SpiceLevelBadge} />
+                  <GenericBadge type={recipe.spice!} map={SpiceLevelBadge} />
                 </p>
 
                 <a

@@ -7,6 +7,8 @@ export function GenericBadge<T extends string>({
   type,
   map,
 }: GenericBadgeProps<T>) {
+  if (!type || !map[type]) return null;
+
   const { label, color } = map[type];
   return (
     <span
