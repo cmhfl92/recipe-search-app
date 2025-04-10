@@ -11,7 +11,7 @@ import { useTheme } from './lib/themeContext';
 import { RecipeBadge } from './components/recipeDifficultyBadge';
 import { SpiceLevelBadge } from './components/spiceBadge';
 import { GenericBadge } from './components/genericBadge';
-import PlayGround from '@/app/playground/page';
+import Button from '@/app/playground/page';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from './store';
 import { fetchRecipes } from '@/app/components/recipeSlice';

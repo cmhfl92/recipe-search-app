@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "dev:all": "concurrently \"npm run dev\" \"cd server && npm run dev\""
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
