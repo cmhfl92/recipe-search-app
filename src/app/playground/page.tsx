@@ -121,4 +121,39 @@ const Playground = () => {
   );
 };
 
-export default Playground;
+// export default Playground;
+
+('use client'); //nextjs
+
+// import React, { useState } from 'react';
+
+const secret_word = 'hangman';
+
+const max_wrong_guesses = 6;
+
+const Hangman = () => {
+  const [guesses, setGuesses] = useState<string[]>([]);
+
+  const wrongGuesses = guesses.filter(letter => !secret_word.includes(letter));
+
+  const isLoser = wrongGuesses.length >= max_wrong_guesses;
+  const isWinner = secret_word
+    .split('')
+    .every(letter => guesses.includes(letter));
+
+  //figure out the guesses and return condition if there's already a letter inclluded or a loser/winner
+  const handleGuess = (letter: string) => {
+    if (guesses.includes(letter) || isLoser || isWinner) return;
+    setGuesses(prev => [...prev, letter]);
+  };
+
+  //getting the secret word and splitting, mapping through the letter to see if we find the one included in our guess then display it or else display - and then join them to show the word.
+  const getDisplayWord = () => {
+    return secret_word
+      .split('')
+      .map(letter => (guesses.includes(letter) ? letter : '_'))
+      .join(' ');
+  };
+};
+
+export default Hangman;
