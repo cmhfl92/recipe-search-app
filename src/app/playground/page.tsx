@@ -157,3 +157,63 @@ const Hangman = () => {
 };
 
 export default Hangman;
+
+const rawProductData = {
+  data: {
+    items: [
+      {
+        id: 'sku_123',
+        attributes: {
+          name: 'Ultra HD TV',
+          price: { amount: 799.99, currency: 'USD' },
+          tags: ['electronics', 'tv'],
+          available: true,
+          dimensions: {
+            width: 55,
+            height: 35,
+            depth: 4,
+          },
+        },
+        meta: {
+          createdAt: '2023-12-01T10:30:00Z',
+          updatedAt: '2024-03-02T14:12:00Z',
+        },
+      },
+      // more products...
+    ],
+  },
+};
+
+interface Price {
+  amount: number; //decimal?
+  currency: string;
+}
+
+interface Dimensions {
+  width: number;
+  height: number;
+  depth: number;
+}
+
+interface Attributes {
+  name: string;
+  price: Price;
+  tags: string[];
+  available: boolean;
+  dimensions: Dimensions;
+}
+
+interface MetaData {
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface ProductData {
+  id: string;
+  attributes: Attributes;
+  meta: MetaData;
+}
+
+interface Product {
+  items: ProductData[];
+}
