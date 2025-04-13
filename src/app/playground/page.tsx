@@ -261,3 +261,30 @@ const rawOrderData = {
     // more orders...
   ],
 };
+
+interface Address {
+  street: string;
+  city: string;
+  zip: string;
+  country: string;
+}
+
+interface Items {
+  productId: string;
+  name: string;
+  quantity: number;
+  amount: number;
+  currency: string;
+}
+
+interface Orders {
+  orderId: string;
+  customerId: string;
+  name: string;
+  email: string;
+  phone: string;
+  items: Items[];
+  status: string;
+  address: Address;
+  estimatedDelivery: string;
+}
