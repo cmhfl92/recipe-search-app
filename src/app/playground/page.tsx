@@ -203,17 +203,61 @@ interface Attributes {
   dimensions: Dimensions;
 }
 
-interface MetaData {
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  currency: string;
+  tags: string[];
+  available: boolean;
+  dimensions: Dimensions;
   createdAt: string;
   updatedAt: string;
 }
 
-interface ProductData {
-  id: string;
-  attributes: Attributes;
-  meta: MetaData;
-}
-
-interface Product {
-  items: ProductData[];
-}
+const rawOrderData = {
+  orders: [
+    {
+      orderId: 'order_001',
+      customer: {
+        id: 'cust_123',
+        name: 'Jane Doe',
+        contact: {
+          email: 'jane.doe@example.com',
+          phone: '+1-555-1234',
+        },
+      },
+      items: [
+        {
+          productId: 'prod_100',
+          name: 'Wireless Mouse',
+          quantity: 2,
+          price: {
+            amount: 25.5,
+            currency: 'USD',
+          },
+        },
+        {
+          productId: 'prod_101',
+          name: 'Mechanical Keyboard',
+          quantity: 1,
+          price: {
+            amount: 89.99,
+            currency: 'USD',
+          },
+        },
+      ],
+      status: 'shipped',
+      shipping: {
+        address: {
+          street: '123 Main St',
+          city: 'San Francisco',
+          zip: '94107',
+          country: 'USA',
+        },
+        estimatedDelivery: '2024-08-20',
+      },
+    },
+    // more orders...
+  ],
+};
