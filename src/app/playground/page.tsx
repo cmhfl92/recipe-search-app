@@ -277,7 +277,7 @@ interface Items {
   currency: string;
 }
 
-interface Orders {
+interface Order {
   orderId: string;
   customerId: string;
   name: string;
@@ -287,4 +287,17 @@ interface Orders {
   status: string;
   address: Address;
   estimatedDelivery: string;
+}
+
+interface FlatterOrder {
+  id: string;
+  customerName: string;
+  email: string;
+  phone: string;
+  product: { productId: string; productName: string }[];
+  totalAmount: number;
+  status: string;
+  deliveryDate: string;
+  city: string;
+  country: string;
 }
