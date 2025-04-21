@@ -16,12 +16,14 @@ interface RecipeModalProps {
 
 const RecipeModal: React.FC<RecipeModalProps> = ({ open, onClose }) => {
   const [label, setLabel] = useState('');
+  const [image, setImage] = useState('');
+  const [difficulty, setDifficulty] = useState('');
   const [createRecipe] = useCreateRecipeMutation();
 
   const handleSave = async () => {
-    if (label)
+    if (label && image && difficulty)
       try {
-        await createRecipe({ label });
+        await createRecipe({ label, image, difficulty });
         onClose();
       } catch (err) {
         console.log('Failed to add new recipe');
@@ -42,6 +44,24 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ open, onClose }) => {
           variant='outlined'
           value={label}
           onChange={e => setLabel(e.target.value)}
+        />
+        <TextField
+          autoFocus
+          margin='dense'
+          label='Image URL'
+          fullWidth
+          variant='outlined'
+          value={image}
+          onChange={e => setImage(e.target.value)}
+        />
+        <TextField
+          autoFocus
+          margin='dense'
+          label='Difficulty'
+          fullWidth
+          variant='outlined'
+          value={difficulty}
+          onChange={e => setDifficulty(e.target.value)}
         />
       </DialogContent>
       <DialogActions>

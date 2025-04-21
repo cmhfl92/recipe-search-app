@@ -58,6 +58,8 @@ export default function Homepage() {
     trigger(query);
   };
 
+  console.log('data', recipes);
+
   return (
     <main
       className={`min-h-screen ${
@@ -160,10 +162,12 @@ export default function Homepage() {
                   ⏱️ {recipe.totalTime || 'N/A'} min{' '}
                   <QuickBadge time={recipe.totalTime!} />
                 </p>
-                <p className='text-sm mb-2'>
-                  {/* <RecipeDifficultyBadge difficulty={recipe.difficulty} /> */}
-                  <GenericBadge type={recipe.difficulty!} map={RecipeBadge} />
-                </p>
+                {recipe.difficulty && (
+                  <p className='text-sm mb-2'>
+                    {/* <RecipeDifficultyBadge difficulty={recipe.difficulty} /> */}
+                    <GenericBadge type={recipe.difficulty} map={RecipeBadge} />
+                  </p>
+                )}
                 <p className='text-sm mb-2'>
                   {/* <SpiceBadge spiceLevel={recipe.spice} /> */}
                   <GenericBadge type={recipe.spice!} map={SpiceLevelBadge} />

@@ -13,7 +13,10 @@ export const recipesApi = createApi({
       providesTags: result =>
         result ? result.map(({ _id }) => ({ type: 'Recipe', id: _id })) : [],
     }),
-    createRecipe: builder.mutation<Recipe, { label: string }>({
+    createRecipe: builder.mutation<
+      Recipe,
+      { label: string; image: string; difficulty: string }
+    >({
       query: newRecipe => ({
         url: '/recipes',
         method: 'POST',
