@@ -11,7 +11,6 @@ import { useTheme } from './lib/themeContext';
 import { RecipeBadge } from './components/recipeDifficultyBadge';
 import { SpiceLevelBadge } from './components/spiceBadge';
 import { GenericBadge } from './components/genericBadge';
-import Button from '@/app/playground/page';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from './store';
 import { fetchRecipes } from '@/app/components/recipeSlice';
@@ -20,9 +19,16 @@ import {
   useGetReipcesQuery,
   useLazyGetReipcesQuery,
 } from './components/appSlice';
+import Button from './components/Button';
+import RecipeModal from './components/modal';
 
 export default function Homepage() {
   const [query, setQuery] = useState<string>('');
+
+  const [isModalOpen, setIsModaOpen] = useState(false);
+
+  const openModal = () => setIsModaOpen(true);
+  const closeModal = () => setIsModaOpen(false);
 
   const [deleteRecipe] = useDeleteRecipeMutation();
   const [trigger, { data: recipes = [], isLoading, error }] =
@@ -74,6 +80,8 @@ export default function Homepage() {
         >
           Search
         </button>
+        <Button label='Add New Recipe' onClick={openModal} variant='primary' />
+        <RecipeModal closeModal={closeModal} isOpen={isModalOpen} />
         <button
           onClick={goToFavorites}
           className='text-sm text-blue-600 hover:underline hover:text-blue-800 cursor-pointer float-right'
