@@ -301,3 +301,9 @@ interface FlatterOrder {
   city: string;
   country: string;
 }
+
+function logRecipeClick(recipeTitle: string): void {
+  console.log(`User clicked on recipe: ${recipeTitle}`);
+}
+
+const userClicks = logRecipeClick('chicken alfredo');

@@ -13,6 +13,14 @@ export const recipesApi = createApi({
       providesTags: result =>
         result ? result.map(({ _id }) => ({ type: 'Recipe', id: _id })) : [],
     }),
+    createRecipe: builder.mutation<Recipe, { label: string }>({
+      query: newRecipe => ({
+        url: '/recipes',
+        method: 'POST',
+        body: newRecipe,
+      }),
+      invalidatesTags: ['Recipe'],
+    }),
     deleteRecipe: builder.mutation<{ success: boolean; id: string }, string>({
       query: id => ({
         url: `/recipes/${id}`,
@@ -26,5 +34,6 @@ export const recipesApi = createApi({
 export const {
   useGetReipcesQuery,
   useLazyGetReipcesQuery,
+  useCreateRecipeMutation,
   useDeleteRecipeMutation,
 } = recipesApi;
