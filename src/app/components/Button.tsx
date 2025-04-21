@@ -10,7 +10,11 @@ interface ButtonProps {
 const Button = ({ label, onClick, variant = 'primary' }: ButtonProps) => {
   return (
     <>
-      <div className={variant === 'primary' ? 'bg-red-400' : 'bg-green-400'}>
+      <div
+        className={`text-white px-4 py-2 rounded  ${
+          variant === 'primary' ? 'bg-green-600' : 'bg-red-400'
+        }`}
+      >
         <button onClick={onClick}>{label}</button>
       </div>
     </>

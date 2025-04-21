@@ -81,7 +81,7 @@ export default function Homepage() {
           Search
         </button>
         <Button label='Add New Recipe' onClick={openModal} variant='primary' />
-        <RecipeModal closeModal={closeModal} isOpen={isModalOpen} />
+        <RecipeModal onClose={closeModal} open={isModalOpen} />
         <button
           onClick={goToFavorites}
           className='text-sm text-blue-600 hover:underline hover:text-blue-800 cursor-pointer float-right'
