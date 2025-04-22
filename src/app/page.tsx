@@ -138,7 +138,7 @@ export default function Homepage() {
             </button>
             <div className='p-4'>
               {/* <Image
-                src={recipe.image}
+                src={recipe.image!}
                 alt={recipe.label}
                 width={400}
                 height={300}

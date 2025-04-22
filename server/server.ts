@@ -65,7 +65,7 @@ app.post('/recipes', async (req: Request, res: Response): Promise<void> => {
   try {
     const { label, image, difficulty } = req.body;
 
-    if (!label) {
+    if (!label || !image || !difficulty) {
       res.status(400).json({ error: 'Label is required!' });
       return;
     }
