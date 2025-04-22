@@ -19,7 +19,7 @@ Watch the demo of my app in action (Click the gif if needed):
 
 ## Tech Stack
 
-- **Framework:** [React](https://react.dev/)
+- **Javascript Library:** [React](https://react.dev/)
 - **Framework:** [Next.js](https://nextjs.org/)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **RTK Query:** [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
