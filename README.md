@@ -4,7 +4,7 @@ A modern recipe search app built with **ReactJs**, **Next.js**, **TypeScript**, 
 
 Watch the demo of my app in action:
 
-[![Recipe Finder Demo](https://imgur.com/a/NPWtVvF)](https://i.imgur.com/uZhcZEY.mp4)
+[![Recipe Finder Demo](https://i.imgur.com/Lr0X5dj.png)](https://i.imgur.com/uZhcZEY.mp4)
 
 ---
 
