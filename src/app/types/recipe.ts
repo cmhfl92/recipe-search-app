@@ -5,7 +5,7 @@ export interface Recipe {
   uri?: string;
   _id: string;
   label: string;
-  image?: string;
+  image: string;
   url?: string;
   totalTime?: number;
   ingredientLines?: string[];

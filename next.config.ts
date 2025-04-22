@@ -5,9 +5,9 @@ const nextConfig: NextConfig = {
     domains: ['images.pexels.com', 'source.unsplash.com'],
     remotePatterns: [
       {
-        protocol: 'https', // Ensure the protocol is https
-        hostname: 'images.pexels.com', // Add the domain here
-        pathname: '/photos/**', // The pattern for image paths
+        protocol: 'https',
+        hostname: 'images.pexels.com',
+        pathname: '/photos/**',
       },
     ],
   },

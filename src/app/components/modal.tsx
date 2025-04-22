@@ -6,6 +6,10 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
   TextField,
 } from '@mui/material';
 
@@ -44,6 +48,9 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ open, onClose }) => {
           variant='outlined'
           value={label}
           onChange={e => setLabel(e.target.value)}
+          sx={{
+            width: '30rem',
+          }}
         />
         <TextField
           autoFocus
@@ -53,16 +60,29 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ open, onClose }) => {
           variant='outlined'
           value={image}
           onChange={e => setImage(e.target.value)}
+          sx={{
+            width: '30rem',
+            padding: '5px 0',
+          }}
         />
-        <TextField
-          autoFocus
-          margin='dense'
-          label='Difficulty'
-          fullWidth
-          variant='outlined'
-          value={difficulty}
-          onChange={e => setDifficulty(e.target.value)}
-        />
+        <FormControl
+          sx={{
+            width: '30rem',
+          }}
+        >
+          <InputLabel id='demo-simple-select-label'>Difficulty</InputLabel>
+          <Select
+            labelId='demo-simple-select-label'
+            id='demo-simple-select'
+            value={difficulty}
+            label='Difficulty'
+            onChange={e => setDifficulty(e.target.value)}
+          >
+            <MenuItem value={'easy'}>Easy</MenuItem>
+            <MenuItem value={'medium'}>Intermediate</MenuItem>
+            <MenuItem value={'hard'}>Hard</MenuItem>
+          </Select>
+        </FormControl>
       </DialogContent>
       <DialogActions>
         <Button label='Save' onClick={handleSave} variant='primary' />
