@@ -19,8 +19,8 @@ const Button = ({
       <div
         className={`text-white px-4 py-2 rounded   ${
           variant === 'primary'
-            ? 'bg-green-600 hover:bg-green-800'
-            : 'bg-red-500 hover:bg-red-700'
+            ? 'bg-[#1e8ea6] hover:opacity-90'
+            : 'bg-[#db4b24] hover:opacity-90'
         }`}
       >
         <button onClick={onClick} className=''>

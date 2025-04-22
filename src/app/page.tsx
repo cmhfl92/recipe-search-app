@@ -63,11 +63,17 @@ export default function Homepage() {
   return (
     <main
       className={`min-h-screen ${
-        theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'
+        theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-[#faefdd] text-black'
       }`}
     >
-      <h1 className='text-3xl font-bold mb-6 text-center'>🍽️ Recipe Finder</h1>
-
+      <div className='flex justify-center'>
+        <Image
+          src='/recipe-finder-logo.png'
+          alt='Recipe Finder Logo'
+          width={200}
+          height={200}
+        />
+      </div>
       <div className='flex gap-2 mb-6 justify-center'>
         <input
           type='text'
@@ -76,12 +82,12 @@ export default function Homepage() {
           onChange={e => setQuery(e.target.value)}
           className='border px-4 py-2 w-full max-w-md rounded shadow'
         />
-        <button
+        <Button
+          label='Search'
           onClick={handleSearch}
-          className='bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700'
-        >
-          Search
-        </button>
+          variant='primary'
+          className=''
+        />
         <Button label='Add New Recipe' onClick={openModal} variant='primary' />
         <RecipeModal onClose={closeModal} open={isModalOpen} />
         <button
