@@ -10,11 +10,10 @@ Watch the demo of my app in action:
 
 ## 🚀 Features
 
-- Live recipe search using Edamam API
 - Add/remove favorites (stored in localStorage)
 - Quick meal badges (🚀 for 15 min or less!)
 - Unit tests with Jest + React Testing Library
-- Built with Next.js App Router + TypeScript + Tailwind CSS
+- Built with Next.js App Router + TypeScript + Tailwind CSS + NodeJS/Express
 
 ---
 
