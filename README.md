@@ -2,7 +2,7 @@
 
 A modern recipe search app built with **ReactJs**, **Next.js**, **TypeScript**, and the **NodeJS**. Search for recipes, view nutrition info, and save your favorites.
 
-Watch the demo of my app in action:
+Watch the demo of my app in action (Click the gif if needed):
 
 [![Recipe Finder Demo](/public/recipe-app-gif.gif)](https://i.imgur.com/uZhcZEY.mp4)
 
