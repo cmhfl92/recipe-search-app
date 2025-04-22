@@ -90,7 +90,7 @@ export default function Homepage() {
         />
         <Button label='Add New Recipe' onClick={openModal} variant='primary' />
         <RecipeModal onClose={closeModal} open={isModalOpen} />
-        <button
+        {/* <button
           onClick={goToFavorites}
           className='text-sm text-blue-600 hover:underline hover:text-blue-800 cursor-pointer float-right'
         >
@@ -102,7 +102,7 @@ export default function Homepage() {
           className='text-sm text-blue-600 hover:underline hover:text-blue-800 cursor-pointer float-right'
         >
           Let's Play!
-        </button>
+        </button> */}
       </div>
 
       {isLoading && <p className='text-center text-gray-600'>Loading...</p>}
