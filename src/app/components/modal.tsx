@@ -22,12 +22,13 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ open, onClose }) => {
   const [label, setLabel] = useState('');
   const [image, setImage] = useState('');
   const [difficulty, setDifficulty] = useState('');
+  const [spice, setSpice] = useState('');
   const [createRecipe] = useCreateRecipeMutation();
 
   const handleSave = async () => {
-    if (label && image && difficulty)
+    if (label && image && difficulty && spice)
       try {
-        await createRecipe({ label, image, difficulty });
+        await createRecipe({ label, image, difficulty, spice });
         onClose();
       } catch (err) {
         console.log('Failed to add new recipe');
@@ -81,6 +82,27 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ open, onClose }) => {
             <MenuItem value={'easy'}>Easy</MenuItem>
             <MenuItem value={'medium'}>Intermediate</MenuItem>
             <MenuItem value={'hard'}>Hard</MenuItem>
+          </Select>
+        </FormControl>
+        <div className='pb-3' />
+        <FormControl
+          sx={{
+            width: '30rem',
+          }}
+        >
+          {' '}
+          <InputLabel id='demo-simple-select-label'>Spice Level</InputLabel>
+          <Select
+            labelId='demo-simple-select-label'
+            id='demo-simple-select'
+            value={spice}
+            label='Spice Level'
+            onChange={e => setSpice(e.target.value)}
+          >
+            <MenuItem value={'no spice'}>No Spice</MenuItem>
+            <MenuItem value={'mild'}>Mild</MenuItem>
+            <MenuItem value={'medium'}>Medium</MenuItem>
+            <MenuItem value={'hot'}>Hot</MenuItem>
           </Select>
         </FormControl>
       </DialogContent>

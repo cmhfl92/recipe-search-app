@@ -167,10 +167,12 @@ export default function Homepage() {
                     <GenericBadge type={recipe.difficulty} map={RecipeBadge} />
                   </p>
                 )}
-                <p className='text-sm mb-2'>
-                  {/* <SpiceBadge spiceLevel={recipe.spice} /> */}
-                  <GenericBadge type={recipe.spice!} map={SpiceLevelBadge} />
-                </p>
+                {recipe.spice && (
+                  <p className='text-sm mb-2'>
+                    {/* <SpiceBadge spiceLevel={recipe.spice} /> */}
+                    <GenericBadge type={recipe.spice} map={SpiceLevelBadge} />
+                  </p>
+                )}
 
                 <a
                   href={recipe.url}

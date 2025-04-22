@@ -15,7 +15,7 @@ export const recipesApi = createApi({
     }),
     createRecipe: builder.mutation<
       Recipe,
-      { label: string; image: string; difficulty: string }
+      { label: string; image: string; difficulty: string; spice: string }
     >({
       query: newRecipe => ({
         url: '/recipes',

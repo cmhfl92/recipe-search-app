@@ -23,8 +23,9 @@ interface IRecipe extends mongoose.Document {
 
 const recipeSchema = new mongoose.Schema({
   label: { type: String, required: true },
-  image: { type: String },
-  difficulty: { type: String },
+  image: { type: String, required: true },
+  difficulty: { type: String, required: true },
+  spice: { type: String, required: true },
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
@@ -63,14 +64,14 @@ app.get('/search', async (req: Request, res: Response): Promise<void> => {
 
 app.post('/recipes', async (req: Request, res: Response): Promise<void> => {
   try {
-    const { label, image, difficulty } = req.body;
+    const { label, image, difficulty, spice } = req.body;
 
-    if (!label || !image || !difficulty) {
+    if (!label || !image || !difficulty || !spice) {
       res.status(400).json({ error: 'Label is required!' });
       return;
     }
 
-    const newRecipe = new Recipe({ label, image, difficulty });
+    const newRecipe = new Recipe({ label, image, difficulty, spice });
     const savedRecipe = await newRecipe.save();
 
     console.log('Saved Recipe:', savedRecipe);

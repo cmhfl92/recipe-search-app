@@ -4,7 +4,7 @@ export enum SpiceLevel {
   NoSpice = 'no spice',
   Mild = 'mild',
   Medium = 'medium',
-  Hot = 'Hot',
+  Hot = 'hot',
 }
 
 // const SpiceLevelLabels: Record<SpiceLevel, string> = {
