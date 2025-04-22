@@ -4,7 +4,10 @@ A modern recipe search app built with **ReactJs**, **Next.js**, **TypeScript**, 
 
 Watch the demo of my app in action:
 
-![Recipe Finder Demo](https://i.imgur.com/uZhcZEY.mp4)
+<video width="400" controls>
+  <source src="https://i.imgur.com/uZhcZEY.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ---
 
