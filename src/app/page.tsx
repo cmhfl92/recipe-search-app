@@ -137,13 +137,12 @@ export default function Homepage() {
               Delete
             </button>
             <div className='p-4'>
-              {/* <Image
+              <Image
                 src={recipe.image!}
-                alt={recipe.label}
+                alt='Pexels Image'
                 width={400}
                 height={300}
-                className='rounded mb-4 object-cover'
-              /> */}
+              />
               <div className='bg-white text-black dark:bg-gray-800 dark:text-white rounded shadow p-4'>
                 <h2 className='font-semibold text-lg mb-2'>{recipe.label}</h2>
                 {recipe.healthLabels?.length! > 0 && (
