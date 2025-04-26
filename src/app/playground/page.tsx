@@ -5,24 +5,23 @@ function BuggyTodoList() {
   const [todos, setTodos] = useState<string[]>([]);
   const [newTodo, setNewTodo] = useState('');
 
-  // Bug 1: The addTodo function should update the list of todos, but it's missing functionality.
+  // Bug 1: The addTodo function should update the list of todos, but it's missing functionality. fixed.
   const addTodo = () => {
     if (newTodo !== '') {
       setTodos([...todos, newTodo]);
-      setNewTodo(''); // This will add newTodo, but needs to reset the input field after adding.
+      setNewTodo(''); // This will add newTodo, but needs to reset the input field after adding. fixed
     }
   };
 
   // Bug 2: Remove button doesn't work. We should be able to remove a todo when clicked.
-  const removeTodo = index => {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1); // Bug 2: This should update the todos list but isn't triggering a re-render.
-    setTodos(newTodos);
+  const removeTodo = (index: number) => {
+    const filterTodos = todos.filter((todo, i) => i !== index);
+    setTodos(filterTodos);
   };
 
   // Bug 3: The input field doesn't clear after adding a todo. It should reset after clicking 'Add'.
   const handleInputChange = e => {
-    setNewTodo(e.target.value); // This works, but we need to clear input after adding the todo.
+    setNewTodo(e.target.value); // This works, but we need to clear input after adding the todo. - fixed
   };
 
   const containerStyle = {
