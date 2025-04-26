@@ -1,33 +1,28 @@
 'use client';
-import { current } from '@reduxjs/toolkit';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-function BuggyCounter() {
-  const [count, setCount] = useState(0);
-  const [inputValue, setInputValue] = useState(count);
+function BuggyTodoList() {
+  const [todos, setTodos] = useState<string[]>([]);
+  const [newTodo, setNewTodo] = useState('');
 
-  // Bug 2: This button should update inputValue to an incremented value, but the function is missing.
-  const increment = () => {
-    setCount(count + 1);
-    setInputValue(count + 1); // This should also update the inputValue to reflect the increment.
+  // Bug 1: The addTodo function should update the list of todos, but it's missing functionality.
+  const addTodo = () => {
+    if (newTodo !== '') {
+      setTodos([...todos, newTodo]);
+      setNewTodo(''); // This will add newTodo, but needs to reset the input field after adding.
+    }
   };
 
-  // Bug 3: The input value should reflect the current count, but it's not updating when the count changes.
-  const handleInputChange = (e: any) => {
-    const newValue = parseInt(e.target.value, 10);
-    if (!isNaN(newValue)) {
-      setCount(newValue);
-      setInputValue(newValue);
-    }
-    setInputValue(e.target.value); // This should be set properly, but it's being overridden elsewhere.
+  // Bug 2: Remove button doesn't work. We should be able to remove a todo when clicked.
+  const removeTodo = index => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1); // Bug 2: This should update the todos list but isn't triggering a re-render.
+    setTodos(newTodos);
   };
 
-  // Bug 4: Decrement button does not prevent count from going negative.
-  const decrement = () => {
-    if (count > 0) {
-      setCount(count - 1);
-      setInputValue(inputValue - 1); // this is already working?
-    }
+  // Bug 3: The input field doesn't clear after adding a todo. It should reset after clicking 'Add'.
+  const handleInputChange = e => {
+    setNewTodo(e.target.value); // This works, but we need to clear input after adding the todo.
   };
 
   const containerStyle = {
@@ -37,7 +32,7 @@ function BuggyCounter() {
     padding: '20px',
     border: '1px solid #ddd',
     borderRadius: '10px',
-    maxWidth: '300px',
+    maxWidth: '400px',
     margin: 'auto',
     backgroundColor: '#f9f9f9',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
@@ -61,32 +56,56 @@ function BuggyCounter() {
     textAlign: 'center',
     border: '2px solid #ccc',
     borderRadius: '5px',
-    width: '60px',
+    width: '100%',
+  };
+
+  const todoItemStyle = {
+    margin: '5px 0',
+    padding: '10px',
+    border: '1px solid #ddd',
+    borderRadius: '5px',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    backgroundColor: '#e8f5e9',
   };
 
   return (
     <div style={containerStyle}>
-      <h1>Buggy Counter</h1>
-      <h2>{count}</h2>
-
-      {/* Bug 5: The input field should show the count, but it doesn’t */}
+      <h1>Buggy Todo List</h1>
       <input
-        type='number'
-        value={inputValue}
+        type='text'
+        value={newTodo}
         onChange={handleInputChange}
+        placeholder='Add a new task...'
         style={inputStyle}
       />
+      <button onClick={addTodo} style={buttonStyle}>
+        Add Todo
+      </button>
 
-      <div>
-        <button onClick={increment} style={buttonStyle}>
-          Increment
-        </button>
-        <button onClick={decrement} style={buttonStyle}>
-          Decrement
-        </button>
-      </div>
+      <ul style={{ width: '100%', paddingLeft: '0' }}>
+        {todos.map((todo, index) => (
+          <li key={index} style={todoItemStyle}>
+            <span>{todo}</span>
+            {/* Bug 2: Remove button doesn't remove the todo item */}
+            <button
+              onClick={() => removeTodo(index)}
+              style={{
+                backgroundColor: '#f44336',
+                padding: '5px 10px',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+              }}
+            >
+              Remove
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
 
-export default BuggyCounter;
+export default BuggyTodoList;
