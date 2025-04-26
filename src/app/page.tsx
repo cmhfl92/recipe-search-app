@@ -95,14 +95,14 @@ export default function Homepage() {
           className='text-sm text-blue-600 hover:underline hover:text-blue-800 cursor-pointer float-right'
         >
           💖 View Favorites
-        </button>
+        </button>*/}
 
         <button
           onClick={goToPlayground}
           className='text-sm text-blue-600 hover:underline hover:text-blue-800 cursor-pointer float-right'
         >
           Let's Play!
-        </button> */}
+        </button>
       </div>
 
       {isLoading && <p className='text-center text-gray-600'>Loading...</p>}
