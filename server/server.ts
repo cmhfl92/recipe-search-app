@@ -26,6 +26,7 @@ const recipeSchema = new mongoose.Schema({
   image: { type: String, required: true },
   difficulty: { type: String, required: true },
   spice: { type: String, required: true },
+  ingredients: { type: Array<String>, required: true },
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
@@ -64,14 +65,20 @@ app.get('/search', async (req: Request, res: Response): Promise<void> => {
 
 app.post('/recipes', async (req: Request, res: Response): Promise<void> => {
   try {
-    const { label, image, difficulty, spice } = req.body;
+    const { label, image, difficulty, spice, ingredients } = req.body;
 
-    if (!label || !image || !difficulty || !spice) {
+    if (!label || !image || !difficulty || !spice || !ingredients) {
       res.status(400).json({ error: 'Label is required!' });
       return;
     }
 
-    const newRecipe = new Recipe({ label, image, difficulty, spice });
+    const newRecipe = new Recipe({
+      label,
+      image,
+      difficulty,
+      spice,
+      ingredients,
+    });
     const savedRecipe = await newRecipe.save();
 
     console.log('Saved Recipe:', savedRecipe);
