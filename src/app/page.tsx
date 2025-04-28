@@ -1,26 +1,21 @@
 'use client';
 
-import { use, useState } from 'react';
-import { searchRecipes } from '@/app/lib/api';
+import { useState } from 'react';
 import Image from 'next/image';
 import QuickBadge from './components/quickBadge';
 import { useFavorites } from './lib/favoriteContext';
 import { useRouter } from 'next/navigation';
-import ThemeToggle from './components/themeToggle';
 import { useTheme } from './lib/themeContext';
 import { RecipeBadge } from './components/recipeDifficultyBadge';
 import { SpiceLevelBadge } from './components/spiceBadge';
 import { GenericBadge } from './components/genericBadge';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from './store';
-import { fetchRecipes } from '@/app/components/recipeSlice';
 import {
   useDeleteRecipeMutation,
-  useGetReipcesQuery,
   useLazyGetReipcesQuery,
 } from './components/appSlice';
 import Button from './components/Button';
 import RecipeModal from './components/modal';
+import IngredientsModal from './components/ingredientsModal';
 
 export default function Homepage() {
   const [query, setQuery] = useState<string>('');
@@ -29,6 +24,10 @@ export default function Homepage() {
 
   const openModal = () => setIsModaOpen(true);
   const closeModal = () => setIsModaOpen(false);
+
+  const [isIngredientsModalOpen, setIsIngredientsModalOpen] = useState(false);
+  const openIngredientsModal = () => setIsIngredientsModalOpen(true);
+  const closeIngredientsModal = () => setIsIngredientsModalOpen(false);
 
   const [deleteRecipe] = useDeleteRecipeMutation();
   const [trigger, { data: recipes = [], isLoading, error }] =
@@ -188,6 +187,16 @@ export default function Homepage() {
                     <GenericBadge type={recipe.spice} map={SpiceLevelBadge} />
                   </p>
                 )}
+                <IngredientsModal
+                  onClose={closeIngredientsModal}
+                  open={isIngredientsModalOpen}
+                />
+                <Button
+                  label='View Ingredients'
+                  onClick={openIngredientsModal}
+                  variant='primary'
+                  className=''
+                />
               </div>
             </div>
           </div>
