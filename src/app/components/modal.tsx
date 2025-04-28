@@ -23,12 +23,13 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ open, onClose }) => {
   const [image, setImage] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [spice, setSpice] = useState('');
+  const [ingredients, setIngredients] = useState<string[]>([]);
   const [createRecipe] = useCreateRecipeMutation();
 
   const handleSave = async () => {
-    if (label && image && difficulty && spice)
+    if (label && image && difficulty && spice && ingredients)
       try {
-        await createRecipe({ label, image, difficulty, spice });
+        await createRecipe({ label, image, difficulty, spice, ingredients });
         onClose();
       } catch (err) {
         console.log('Failed to add new recipe');
@@ -104,6 +105,20 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ open, onClose }) => {
             <MenuItem value={'medium'}>Medium</MenuItem>
             <MenuItem value={'hot'}>Hot</MenuItem>
           </Select>
+          <TextField
+            autoFocus
+            margin='dense'
+            label='Ingredients'
+            fullWidth
+            multiline
+            variant='outlined'
+            value={ingredients}
+            onChange={e => setIngredients([e.target.value])}
+            sx={{
+              padding: '5px 0',
+            }}
+            rows={4}
+          />
         </FormControl>
       </DialogContent>
       <DialogActions>
