@@ -11,13 +11,14 @@ const IngredientsModal: React.FC<IngredientsModalProps> = ({
   onClose,
 }) => {
   const [label, setLabel] = useState('Default Label');
+
   //   const [ingredients] = useCreateRecipeMutation();
-  const [ingredients] = useState<string[]>([]);
+  const [ingredients] = useState<string[]>(['ingredients, listed, here']);
 
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>{label}</DialogTitle>
-      <DialogContent>Ingredients listed here.</DialogContent>
+      <DialogContent>{ingredients}</DialogContent>
     </Dialog>
   );
 };
