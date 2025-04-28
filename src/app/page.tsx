@@ -188,15 +188,6 @@ export default function Homepage() {
                     <GenericBadge type={recipe.spice} map={SpiceLevelBadge} />
                   </p>
                 )}
-
-                <a
-                  href={recipe.url}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='text-blue-600 hover:underline text-sm'
-                >
-                  View Full Recipe →
-                </a>
               </div>
             </div>
           </div>
