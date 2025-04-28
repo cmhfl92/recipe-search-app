@@ -190,6 +190,8 @@ export default function Homepage() {
                 <IngredientsModal
                   onClose={closeIngredientsModal}
                   open={isIngredientsModalOpen}
+                  label={recipe.label}
+                  ingredients={recipe.ingredients}
                 />
                 <Button
                   label='View Ingredients'

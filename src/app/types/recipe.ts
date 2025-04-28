@@ -8,7 +8,7 @@ export interface Recipe {
   image: string;
   url?: string;
   totalTime?: number;
-  ingredientLines?: string[];
+  ingredients: string[];
   healthLabels?: string[];
   difficulty?: RecipeDifficulty;
   spice?: SpiceLevel;

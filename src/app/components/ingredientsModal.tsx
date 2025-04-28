@@ -1,19 +1,22 @@
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
+import { useLazyGetReipcesQuery } from './appSlice';
 
 interface IngredientsModalProps {
   open: boolean;
   onClose: () => void;
+  label: string;
+  ingredients: string[];
 }
 
 const IngredientsModal: React.FC<IngredientsModalProps> = ({
   open,
   onClose,
+  label,
+  ingredients,
 }) => {
-  const [label, setLabel] = useState('Default Label');
-
-  //   const [ingredients] = useCreateRecipeMutation();
-  const [ingredients] = useState<string[]>(['ingredients, listed, here']);
+  //   const label = recipes.map(recipe => recipe.label);
+  //   const ingredients = recipes.map(recipe => recipe.ingredients);
 
   return (
     <Dialog open={open} onClose={onClose}>
