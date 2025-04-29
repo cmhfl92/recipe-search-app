@@ -16,6 +16,7 @@ import {
 import Button from './components/Button';
 import RecipeModal from './components/modal';
 import IngredientsModal from './components/ingredientsModal';
+import { selectClasses } from '@mui/material';
 
 export default function Homepage() {
   const [query, setQuery] = useState<string>('');
@@ -25,9 +26,16 @@ export default function Homepage() {
   const openModal = () => setIsModaOpen(true);
   const closeModal = () => setIsModaOpen(false);
 
-  const [isIngredientsModalOpen, setIsIngredientsModalOpen] = useState(false);
-  const openIngredientsModal = () => setIsIngredientsModalOpen(true);
-  const closeIngredientsModal = () => setIsIngredientsModalOpen(false);
+  //view ingredients button/modal
+  const [seletedRecipe, setSelectedRecipe] = useState<null | {
+    label: string;
+    ingredients: string[];
+  }>(null);
+  const openIngredientsModal = (recipe: {
+    label: string;
+    ingredients: string[];
+  }) => setSelectedRecipe(recipe);
+  const closeIngredientsModal = () => setSelectedRecipe(null);
 
   const [deleteRecipe] = useDeleteRecipeMutation();
   const [trigger, { data: recipes = [], isLoading, error }] =
@@ -56,8 +64,6 @@ export default function Homepage() {
     await deleteRecipe(id);
     trigger(query);
   };
-
-  console.log('data', recipes);
 
   return (
     <main
@@ -187,22 +193,26 @@ export default function Homepage() {
                     <GenericBadge type={recipe.spice} map={SpiceLevelBadge} />
                   </p>
                 )}
-                <IngredientsModal
-                  onClose={closeIngredientsModal}
-                  open={isIngredientsModalOpen}
-                  label={recipe.label}
-                  ingredients={recipe.ingredients}
-                />
-                <Button
-                  label='View Ingredients'
-                  onClick={openIngredientsModal}
-                  variant='primary'
-                  className=''
-                />
+                {recipe.ingredients && (
+                  <>
+                    <Button
+                      label='View Ingredients'
+                      onClick={() => openIngredientsModal(recipe)}
+                      variant='primary'
+                      className=''
+                    />
+                  </>
+                )}
               </div>
             </div>
           </div>
         ))}
+        <IngredientsModal
+          onClose={closeIngredientsModal}
+          open={!!seletedRecipe}
+          label={seletedRecipe?.label}
+          ingredients={seletedRecipe?.ingredients}
+        />
       </div>
     </main>
   );
