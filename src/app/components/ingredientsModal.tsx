@@ -13,13 +13,23 @@ const IngredientsModal: React.FC<IngredientsModalProps> = ({
   label,
   ingredients,
 }) => {
-  console.log('ingredients', ingredients);
+  console.log('ingedients', ingredients);
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      aria-labelledby='ingredients-dialog-title'
+    >
       {' '}
       {/*I put id here and it didn't work*/}
-      <DialogTitle>{label}</DialogTitle>
-      <DialogContent>{ingredients}</DialogContent>
+      <DialogTitle id='ingredients-dialog-title'>{label}</DialogTitle>
+      <DialogContent>
+        <ul className='pl-5 list-disc'>
+          {ingredients?.map((ingredient: string, index: any) => (
+            <li key={index}>{ingredient}</li>
+          ))}
+        </ul>
+      </DialogContent>
     </Dialog>
   );
 };

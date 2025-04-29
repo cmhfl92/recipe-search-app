@@ -20,7 +20,7 @@ export const recipesApi = createApi({
         image: string;
         difficulty: string;
         spice: string;
-        ingredients: string[];
+        ingredients: string;
       }
     >({
       query: newRecipe => ({

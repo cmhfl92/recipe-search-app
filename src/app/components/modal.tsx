@@ -23,7 +23,7 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ open, onClose }) => {
   const [image, setImage] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [spice, setSpice] = useState('');
-  const [ingredients, setIngredients] = useState<string[]>([]);
+  const [ingredients, setIngredients] = useState<string>('');
   const [createRecipe] = useCreateRecipeMutation();
 
   const handleSave = async () => {
@@ -113,7 +113,7 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ open, onClose }) => {
             multiline
             variant='outlined'
             value={ingredients}
-            onChange={e => setIngredients([e.target.value])}
+            onChange={e => setIngredients(e.target.value)}
             sx={{
               padding: '5px 0',
             }}

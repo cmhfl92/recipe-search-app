@@ -26,7 +26,7 @@ const recipeSchema = new mongoose.Schema({
   image: { type: String, required: true },
   difficulty: { type: String, required: true },
   spice: { type: String, required: true },
-  ingredients: { type: Array<String>, required: true },
+  ingredients: { type: String, required: true },
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
@@ -67,8 +67,36 @@ app.post('/recipes', async (req: Request, res: Response): Promise<void> => {
   try {
     const { label, image, difficulty, spice, ingredients } = req.body;
 
-    if (!label || !image || !difficulty || !spice || !ingredients) {
-      res.status(400).json({ error: 'Label is required!' });
+    if (
+      !label ||
+      !image ||
+      !difficulty ||
+      !spice ||
+      !ingredients ||
+      ingredients.length === 0
+    ) {
+      res.status(400).json({
+        error: 'All fields are required, including at least one ingredient!',
+      });
+      return;
+    }
+
+    //go over this again!
+    let ingredientsParsed = ingredients;
+
+    if (typeof ingredients === 'string') {
+      ingredientsParsed = ingredients.split(',').map(i => i.trim());
+    } else if (
+      Array.isArray(ingredients) &&
+      ingredients.length === 1 &&
+      typeof ingredients[0] === 'string' &&
+      ingredients[0].includes(',')
+    ) {
+      ingredientsParsed = ingredients[0].split(',').map(i => i.trim());
+    }
+
+    if (!Array.isArray(ingredientsParsed) || ingredientsParsed.length === 0) {
+      res.status(400).json({ error: 'At least one ingredient is required.' });
       return;
     }
 
@@ -77,7 +105,7 @@ app.post('/recipes', async (req: Request, res: Response): Promise<void> => {
       image,
       difficulty,
       spice,
-      ingredients,
+      ingredients: ingredientsParsed,
     });
     const savedRecipe = await newRecipe.save();
 
