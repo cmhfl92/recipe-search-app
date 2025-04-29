@@ -26,7 +26,7 @@ const recipeSchema = new mongoose.Schema({
   image: { type: String, required: true },
   difficulty: { type: String, required: true },
   spice: { type: String, required: true },
-  ingredients: { type: String, required: true },
+  ingredients: { type: [String], required: true },
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
