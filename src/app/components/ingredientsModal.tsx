@@ -13,6 +13,7 @@ const IngredientsModal: React.FC<IngredientsModalProps> = ({
   label,
   ingredients,
 }) => {
+  console.log('ingredients', ingredients);
   return (
     <Dialog open={open} onClose={onClose}>
       {' '}
