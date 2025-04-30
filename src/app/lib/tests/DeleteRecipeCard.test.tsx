@@ -1,10 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { useFavorites, FavoritesProvider } from '@/app/lib/favoriteContext';
-import React, { useState } from 'react';
-import {
-  useDeleteRecipeMutation,
-  useLazyGetReipcesQuery,
-} from '@/app/components/appSlice';
+import React from 'react';
 
 const mockDelete = jest.fn();
 
