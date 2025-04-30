@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`View Ingredients Button views ingredients via modal 1`] = `
+<DocumentFragment>
+  <button>
+    View Ingredients
+  </button>
+</DocumentFragment>
+`;

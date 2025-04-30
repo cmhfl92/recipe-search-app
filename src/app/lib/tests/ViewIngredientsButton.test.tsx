@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 
-const ViewIngredientsTest = ({
+const ViewIngredientsButtonTest = ({
   _id,
   ingredients,
   label,
@@ -18,7 +18,7 @@ const ViewIngredientsTest = ({
 describe('View Ingredients Button', () => {
   it('views ingredients via modal', () => {
     render(
-      <ViewIngredientsTest
+      <ViewIngredientsButtonTest
         _id='test_recipe_1'
         label='test_ingredients_1'
         ingredients={['ingredient test 1', 'ingredient test 2']}
