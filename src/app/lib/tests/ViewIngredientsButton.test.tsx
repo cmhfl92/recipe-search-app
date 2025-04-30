@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 
-const ViewIngredientsButtonTest = ({
+export const ViewIngredientsButtonTest = ({
   _id,
   ingredients,
   label,
