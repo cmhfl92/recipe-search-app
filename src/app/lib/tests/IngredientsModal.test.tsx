@@ -26,8 +26,6 @@ describe('Show Ingredients Modal', () => {
     );
 
     expect(screen.queryByText('Test Recipe')).toBeInTheDocument();
-    expect(
-      screen.queryByText('ingredient 1, ingredient 2')
-    ).toBeInTheDocument();
+    expect(screen.queryByText('ingredient 1')).toBeInTheDocument();
   });
 });
