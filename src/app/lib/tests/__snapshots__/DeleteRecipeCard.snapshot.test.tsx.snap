@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Delete Button deletes recipe card with recipeId 1`] = `
+<DocumentFragment>
+  <button>
+    Delete
+  </button>
+</DocumentFragment>
+`;
