@@ -3,7 +3,7 @@ import { Recipe, RecipeSearchResponse } from '../types/recipe';
 
 export const recipesApi = createApi({
   reducerPath: 'recipesApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000' }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_URL }),
   tagTypes: ['Recipe'],
   endpoints: builder => ({
     getReipces: builder.query<Recipe[], string>({
