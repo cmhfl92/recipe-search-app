@@ -43,9 +43,29 @@ cd recipe-search-app
 ### 2. Install Dependencies
 
 npm install
+separate 2nd terminal - cd server && npm install
 
 ### 3. Run the App
 
+npm run dev:all
+
+or
+
+# Terminal 1 (Backend)
+
+cd server
 npm run dev
 
+# Terminal 2 (Frontend)
+
+npm run dev
+
+# Navigate to project
+
+👉 http://localhost:3000
+
 ### 4. Have fun!
+
+# Not working as epected?
+
+Ensure your .env.local file exists with 'NEXT_PUBLIC_API_URL=http://localhost:5000'
