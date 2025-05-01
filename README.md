@@ -36,7 +36,7 @@ Watch the demo of my app in action (Click the gif if needed):
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/recipe-search-app.git
+git clone https://github.com/cmhfl92/recipe-search-app.git
 cd recipe-search-app
 ```
 

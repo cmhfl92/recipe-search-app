@@ -30,6 +30,7 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ open, onClose }) => {
     if (label && image && difficulty && spice && ingredients)
       try {
         await createRecipe({ label, image, difficulty, spice, ingredients });
+
         onClose();
       } catch (err) {
         console.log('Failed to add new recipe');
