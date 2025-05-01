@@ -5,7 +5,13 @@ import mongoose, { ConnectOptions } from 'mongoose';
 const app = express();
 const PORT = 5000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'DELETE'],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 mongoose.connect('mongodb://localhost:27017/recipesdb');
