@@ -7,7 +7,7 @@ const PORT = 5000;
 
 app.use(
   cors({
-    origin: '*',
+    origin: 'http://localhost:3000',
     methods: ['GET', 'POST', 'DELETE'],
     credentials: true,
   })
