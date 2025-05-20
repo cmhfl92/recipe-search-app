@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Recipe, RecipeSearchResponse } from '../types/recipe';
+import { FavoriteRecipe, Recipe, RecipeSearchResponse } from '../types/recipe';
 
 export const recipesApi = createApi({
   reducerPath: 'recipesApi',
@@ -46,3 +46,13 @@ export const {
   useCreateRecipeMutation,
   useDeleteRecipeMutation,
 } = recipesApi;
+
+//creating another 'createApi' in the same folder. Do I need a separate folder or just add it to the existing one?
+// export const favoritesApi = createApi({
+//   reducerPath: 'favoritesApi',
+//   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_URL }),
+//   tagTypes: ['FavoriteRecipe'],
+//   endpoint: builder => ({
+
+//   })
+// })

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useCreateRecipeMutation } from './appSlice';
+import { useCreateRecipeMutation } from '../slices/appSlice';
 import Button from './Button';
 import {
   Dialog,

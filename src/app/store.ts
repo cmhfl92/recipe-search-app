@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { recipesApi } from './components/appSlice';
+import { recipesApi } from './slices/appSlice';
 //import recipesReducer from '../app/components/recipeSlice';
 
 export const store = configureStore({

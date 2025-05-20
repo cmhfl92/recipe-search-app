@@ -12,7 +12,7 @@ import { GenericBadge } from './components/genericBadge';
 import {
   useDeleteRecipeMutation,
   useLazyGetReipcesQuery,
-} from './components/appSlice';
+} from './slices/appSlice';
 import Button from './components/Button';
 import RecipeModal from './components/modal';
 import IngredientsModal from './components/ingredientsModal';
