@@ -35,6 +35,14 @@ const recipeSchema = new mongoose.Schema({
   ingredients: { type: [String], required: true },
 });
 
+const favoritesSchema = new mongoose.Schema({
+  uri: { type: String, required: true },
+  favoritesId: { type: Number, required: true },
+  isFavorite: { type: Boolean, required: true },
+});
+
+const Favorite = mongoose.model('Favorite', favoritesSchema);
+
 const Recipe = mongoose.model('Recipe', recipeSchema);
 
 app.get('/', (_req: Request, res: Response) => {
@@ -66,6 +74,17 @@ app.get('/search', async (req: Request, res: Response): Promise<void> => {
     res.json({ hits: filtered.map(recipe => ({ recipe })) });
   } catch (err) {
     res.status(500).json({ error: 'Failed to search recipes' });
+  }
+});
+
+app.get('/favorites', async (_req: Request, res: Response): Promise<void> => {
+  try {
+    const favorites = await Favorite.find();
+    console.log('favorites: server GET cal:', favorites);
+    res.json(favorites);
+  } catch (err) {
+    console.error('Failed to GET favorites', err);
+    res.status(500).json({ err: 'Failed to fetch favorites' });
   }
 });
 
