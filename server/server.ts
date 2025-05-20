@@ -88,6 +88,30 @@ app.get('/favorites', async (_req: Request, res: Response): Promise<void> => {
   }
 });
 
+app.post('/favorites', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { uri, favoritesId, isFavorite } = req.body;
+    if (!uri || !favoritesId || isFavorite === undefined) {
+      res.status(400).json({
+        error: 'Field is required!',
+      });
+      return;
+    }
+    const newFavorite = new Favorite({
+      uri,
+      favoritesId,
+      isFavorite,
+    });
+    const savedFavorite = await newFavorite.save();
+    console.log('saved favorites', savedFavorite);
+    res.status(201).json(savedFavorite);
+  } catch (err) {
+    console.error('Failed to POST favorites', err);
+    res.status(500).json({ err: 'Failed to POST your Favorite' });
+  }
+  return;
+});
+
 app.post('/recipes', async (req: Request, res: Response): Promise<void> => {
   try {
     const { label, image, difficulty, spice, ingredients } = req.body;
