@@ -17,3 +17,9 @@ export interface Recipe {
 export interface RecipeSearchResponse {
   hits: { recipe: Recipe }[];
 }
+
+export interface FavoriteRecipe {
+  uri: string;
+  favoritesId: number;
+  isFavorite: boolean;
+}
