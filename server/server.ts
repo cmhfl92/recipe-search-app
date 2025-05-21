@@ -190,3 +190,6 @@ app.delete(
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+//working on SQL and reading Database System Concepts.
+//worked on a SQL quiz and aced it - WHERE quiz.
